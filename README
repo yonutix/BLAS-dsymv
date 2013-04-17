@@ -1,0 +1,38 @@
+Tema 2 ASC
+Mihai Ionut Cosmin 332CC
+
+Programul de mana inmulteste matricea si vectorii dupa formula y:= alpha*A*x + beta*y, se 
+numeste main_hand.c.
+
+Se utilizeaza in felul urmator:
+./main_hand -i <input file> [-o <output file>] -s <size>
+<input file> fisierul care contine matricea A, vectorii x si y in format binar.
+<output file> fisierul in care este scris rezultatul in format binar, acest parametru
+este optional.
+<size> dimensiunea matricii
+
+In acelasi mod se utilizeaza si executabilul main_blas care foloseste functia din libraria blas.
+
+Masor timpul cu ajutorul functiei clock().
+
+Pentru compilare e recomandat sa se ruleze scriptul run_script.sh in felul urmator
+
+run_script.sh 20000
+Scriptul genereaza intai un fisier care contine o matrice de 20000x20000 si 2 vectori, astfel si matricile mai mici 
+testate vor avea de unde lua numere.
+
+Matricea generata este simetrica cu valori intre 1-10.
+
+In fisierul plot.p se afla scriptul pentru generarea graficului pe baza fisiserului quad_opteron_nehalem.txt
+
+Fisierul quad_opteron_nehalem.txt contine de la stanga la dreapta pe coloane:
+
+nr de mii | quad cu blas | quad neoptimizat | quad optimizat | opteron cu blas | opteron neoptimizat |\
+opteron optimizat | nehalem cu blas | nehalem neoptimizat | nehalem optimizat |
+
+Am obtinut optimizarea prin folosirea variabilei de tip register si prin folosirea unui pointer in loc de
+accesarea indexului in vector. De asemenea am folosit flag-ul pentru gcc -O3.
+
+Pe grafic se observa performantele din tabel:
+Cea mai buna performanta pentru un proces o obtine procesorul nehalem, in timp ce procesorul opteron obtine cea mai slaba performanta utilizand functia blas.
+
